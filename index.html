@@ -1,23 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Website for Buffer Overflow</title>
+    <!-- PicoCSS for simple, modern styling -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <!-- htmx -->
+    <script src="https://unpkg.com/htmx.org@1.9.0"></script>
 </head>
 <body>
-    <script src="https://unpkg.com/htmx.org@1.9.0"></script>
 
-    <form hx-post="/helloworld"
-          hx-target="#results"
-          hx-swap="innerHTML"
-          hx-on::after-request="if(event.detail.successful) this.reset()"
-    >
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name">
-        <button class="btn">Submit</button>
-    </form>
+<main class="container">
+    <h1>Buffer Overflow Lab Demo</h1>
+    <p>Enter your name below. The results will appear instantly below the form.</p>
 
-    <div id="results">
-    </div>
+    <!-- Name Form -->
+    <section>
+        <form hx-post="/helloworld"
+              hx-target="#results"
+              hx-swap="innerHTML"
+              hx-on::after-request="if(event.detail.successful) this.reset()"
+        >
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Dynamic Results -->
+    <section id="results">
+        <!-- Results from the server will appear here -->
+    </section>
+
+    <!-- New Form -->
+    <section>
+        <h2>Favorite Programming Language</h2>
+        <form hx-post="/submit-language"
+              hx-target="#language-results"
+              hx-swap="innerHTML"
+              hx-on::after-request="if(event.detail.successful) this.reset()"
+        >
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" placeholder="Type your favorite language" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="language-results"></div>
+    </section>
+</main>
 
 </body>
 </html>
