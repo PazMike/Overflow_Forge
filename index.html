@@ -4,12 +4,20 @@
     <title>Website for Buffer Overflow</title>
 </head>
 <body>
+    <script src="https://unpkg.com/htmx.org@1.9.0"></script>
 
-    <form action="#" method="post">
+    <form hx-post="/helloworld"
+          hx-target="#results"
+          hx-swap="innerHTML"
+          hx-on::after-request="if(event.detail.successful) this.reset()"
+    >
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your name">
-        <button type="submit">Submit</button>
+        <button class="btn">Submit</button>
     </form>
+
+    <div id="results">
+    </div>
 
 </body>
 </html>

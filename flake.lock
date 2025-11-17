@@ -1,0 +1,79 @@
+{
+  "nodes": {
+    "c-flake": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "ulfius": "ulfius"
+      },
+      "locked": {
+        "lastModified": 1763399871,
+        "narHash": "sha256-OXtla6kh9MMd0wK3mX5Wxh5QLFUSwg8GyQnIm+tJmEA=",
+        "owner": "judah-sotomayor",
+        "repo": "c-flake",
+        "rev": "339248ae6e669d31bb14a01734952271f2942612",
+        "type": "github"
+      },
+      "original": {
+        "owner": "judah-sotomayor",
+        "repo": "c-flake",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1763312402,
+        "narHash": "sha256-3YJkOBrFpmcusnh7i8GXXEyh7qZG/8F5z5+717550Hk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1763312402,
+        "narHash": "sha256-3YJkOBrFpmcusnh7i8GXXEyh7qZG/8F5z5+717550Hk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "c-flake": "c-flake",
+        "nixpkgs": "nixpkgs_2"
+      }
+    },
+    "ulfius": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723116219,
+        "narHash": "sha256-UKRFW98SZhISoVvXjf63coPuvK9Iv5mu40rVEhxRiw8=",
+        "ref": "refs/heads/master",
+        "rev": "3fd9d8d39a7ea2fe86234246526b65b40bea9322",
+        "revCount": 1362,
+        "type": "git",
+        "url": "https://github.com/babelouest/ulfius"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/babelouest/ulfius"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
