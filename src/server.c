@@ -23,15 +23,17 @@ int callback_root (const struct _u_request * request, struct _u_response * respo
     return U_CALLBACK_CONTINUE;
 }
 
+
 int callback_submit_p (const struct _u_request * request, struct _u_response * response, void * user_data) {
     printf("POST parameter id: %s\n", u_map_get(request->map_post_body, "name"));
 
     const char * str = u_map_get(request->map_post_body, "name");
-    char buffer [100];
+    char buffer[100]; /* Should be enough space! */
     int result = sprintf(buffer, "<div> result %s </div>", str);
     ulfius_set_string_body_response(response, 200, buffer);
     return U_CALLBACK_CONTINUE;
 }
+// \x00\x40\x13\x4e
 /**
  * main function
  */

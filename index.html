@@ -16,7 +16,7 @@
 
     <!-- Name Form -->
     <section>
-        <form hx-post="/helloworld"
+        <form hx-post="/submit"
               hx-target="#results"
               hx-swap="innerHTML"
               hx-on::after-request="if(event.detail.successful) this.reset()"
@@ -47,6 +47,5 @@
         <div id="language-results"></div>
     </section>
 </main>
-
 </body>
 </html>

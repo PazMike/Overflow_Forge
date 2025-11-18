@@ -18,6 +18,8 @@
             packages = with pkgs; [
               c-flake.packages.${system}.ulfius
             ];
+            NIX_HARDENING_ENABLE = "";
+
           };
         });
       };
