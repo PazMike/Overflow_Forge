@@ -1,51 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Website for Buffer Overflow</title>
-    <!-- PicoCSS for simple, modern styling -->
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <!-- htmx -->
-    <script src="https://unpkg.com/htmx.org@1.9.0"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Website for Buffer Overflow</title>
+        <!-- PicoCSS for simple, modern styling -->
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
 
-<main class="container">
-    <h1>Buffer Overflow Lab Demo</h1>
-    <p>Enter your name below. The results will appear instantly below the form.</p>
+        <!-- htmx -->
+        <script src="https://unpkg.com/htmx.org@1.9.0"></script>
+    </head>
+    <body>
 
-    <!-- Name Form -->
-    <section>
-        <form hx-post="/submit"
-              hx-target="#results"
-              hx-swap="innerHTML"
-              hx-on::after-request="if(event.detail.successful) this.reset()"
-        >
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+        <main class="container">
+            <h1>Bayside Family Support Specialists</h1>
+            <h4>Customer Information Center</h4>
+            <p>Search for the details you're interested in below. Can't find what you're looking for? Call us at 123-456-7890!</p>
 
-    <!-- Dynamic Results -->
-    <section id="results">
-        <!-- Results from the server will appear here -->
-    </section>
+            <div class="search-grid">
 
-    <!-- New Form -->
-    <section>
-        <h2>Favorite Programming Language</h2>
-        <form hx-post="/submit-language"
-              hx-target="#language-results"
-              hx-swap="innerHTML"
-              hx-on::after-request="if(event.detail.successful) this.reset()"
-        >
-            <label for="language">Language:</label>
-            <input type="text" id="language" name="language" placeholder="Type your favorite language" required>
-            <button type="submit">Submit</button>
-        </form>
-        <div id="language-results"></div>
-    </section>
-</main>
-</body>
+                <article>
+                    <section>
+                        <h2 for="name">Practitioner Search</h2>
+                        <form role="search"
+                              hx-get="/search/practitioners"
+                              hx-target="#practitioner-results"
+                              hx-swap="innerHTML"
+                              hx-on::after-request="if(event.detail.successful) this.reset()">
+                            <input type="text" id="name" name="name" placeholder="Enter a name" required>
+                            <input type="submit" value="Search" />
+                        </form>
+                        <div id="practitioner-results">
+                            <!-- Results from the server will appear here -->
+                        </div>
+                    </section>
+                    <!-- Dynamic Results -->
+                </article>
+
+                <article>
+                    <section>
+                        <h2 for="name">Service Search</h2>
+                        <form role="search"
+                              hx-get="/search/services"
+                              hx-target="#service-results"
+                              hx-swap="innerHTML"
+                              hx-on::after-request="if(event.detail.successful) this.reset()">
+                            <input type="text" id="name" name="name" placeholder="Enter a service name" required>
+                            <input type="submit" value="Search" />
+                        </form>
+                        <div id="service-results">
+                            <!-- Results from the server will appear here -->
+                        </div>
+                    </section>
+                    <!-- Dynamic Results -->
+                </article>
+
+
+                <article>
+                    <section>
+                        <h2 for="name">Location Search</h2>
+                        <form role="search"
+                              hx-get="/search/locations"
+                              hx-target="#location-results"
+                              hx-swap="innerHTML"
+                              hx-on::after-request="if(event.detail.successful) this.reset()">
+                            <input type="text" id="name" name="name" placeholder="City, Zip, or Clinic Name" required>
+                            <input type="submit" value="Search" />
+                        </form>
+                        <div id="location-results">
+                            <!-- Results from the server will appear here -->
+                        </div>
+                    </section>
+                    <!-- Dynamic Results -->
+                </article>
+
+
+        </main>
+    </body>
 </html>

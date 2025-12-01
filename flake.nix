@@ -17,8 +17,11 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               c-flake.packages.${system}.ulfius
+              mysql84
+              libmysqlclient
             ];
             NIX_HARDENING_ENABLE = "";
+            LD_LIBRARY_PATH = "${pkgs.libmysqlclient.out}/lib";
 
           };
         });

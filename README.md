@@ -8,6 +8,6 @@ You'll need to be on a Linux machine (WSL is great)
 Compile:
 
 ``` sh
-gcc -lulfius ./src/server.c 
+gcc -lulfius -lmysqlclient ./src/server.c 
 ./a.out
 ```
