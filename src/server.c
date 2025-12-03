@@ -71,20 +71,21 @@ int callback_root (const struct _u_request * request, struct _u_response * respo
 }
 
 int callback_practitioners (const struct _u_request * request, struct _u_response * response, void * user_data) {
-  MYSQL *conn = (MYSQL*)user_data;
+  char name[100];
   MYSQL_RES *res = NULL;
   MYSQL_ROW row;
   char* buffer = NULL;
-  char query[100];
+  char query[400];
   sprintf(query, "SELECT * FROM practitioners WHERE full_name LIKE '%%%s%%'", u_map_get(request->map_url, "name"));
-  if (mysql_query(conn, query)) {
-    fprintf(stderr, "%s\n", mysql_error(conn));
+
+  if (mysql_query((MYSQL*)user_data, query)) {
+    fprintf(stderr, "%s\n", mysql_error((MYSQL*)user_data));
 
     return U_CALLBACK_ERROR;
   }
 
 
-  res = mysql_store_result(conn);
+  res = mysql_store_result((MYSQL*)user_data);
 
   int num_rows = mysql_num_rows(res);
 
@@ -100,6 +101,8 @@ int callback_practitioners (const struct _u_request * request, struct _u_respons
 
     mysql_free_result(res);
 
+
+
     buffer = calloc(total_length, sizeof(char));
     for(int i = 0; i < num_rows; i++) {
       strcat(buffer, results[i]);
@@ -109,9 +112,11 @@ int callback_practitioners (const struct _u_request * request, struct _u_respons
     buffer = calloc(50, sizeof(char));
     strcat(buffer, "<div><h1>No results!</h></div>");
   }
-
-
   ulfius_set_string_body_response(response, 200, buffer);
+
+  strcpy(name, u_map_get(request->map_url, "name"));
+  printf("Search for: %s\n", name);
+
   return U_CALLBACK_CONTINUE;
 
 }
@@ -214,6 +219,11 @@ int callback_locations (const struct _u_request * request, struct _u_response * 
 
 }
 
+int test() {
+  printf("Gottem\n");
+  return 0;
+}
+
 // \x00\x40\x13\x4e
 /**
  * main function
@@ -239,6 +249,7 @@ int main(void) {
     fprintf(stderr, "Error ulfius_init_instance, abort\n");
     return(1);
   }
+  instance.check_utf8 = 0;
 
   // Endpoint list declaration
   ulfius_add_endpoint_by_val(&instance, "GET", "/", NULL, 0, &callback_root, NULL);
